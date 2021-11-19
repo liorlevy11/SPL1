@@ -1,9 +1,4 @@
 //
-// Created by liorlevy on 17/11/2021.
-//
-
-//#include "Action.h"
-//
 // Created by ellabeeri on 10/11/2021.
 //
 #include <string>
@@ -39,20 +34,23 @@ OpenTrainer::OpenTrainer(int id, std::vector<Customer *> &customersList):trainer
 }
 
 void OpenTrainer::act(Studio &studio) {
-    if((studio.getTrainer(trainerId)== nullptr)||(studio.getTrainer(trainerId)->isOpen()== true))
-        std::cout<<"Workout session does not exist or is already open";
-    if(studio.getTrainer(trainerId)->getCapacity()>=4)
+if((studio.getTrainer(trainerId)== nullptr)||(studio.getTrainer(trainerId)->isOpen()== true)) {
+    //error(std::string "Workout session does not exist or is already open");
+}
+
+
+else{
+
+if(studio.getTrainer(trainerId)->getCapacity()>=4)
+{
+    studio.getTrainer(trainerId)->openTrainer();
+    for(int i=0;i<customers.size();i++)
     {
-        studio.getTrainer(trainerId)->openTrainer();
-        for(int i=0;i<customers.size();i++)
-        {
-            studio.getTrainer(trainerId)->addCustomer(customers[i]);
-
-        }
-
-
+        studio.getTrainer(trainerId)->addCustomer(customers[i]);
     }
 
+}
+complete();
 
 
 }
@@ -63,6 +61,16 @@ std::string OpenTrainer::toString() const {
 
 void Order::act(Studio &studio) {
     std::cout <<"order"<<trainerId;
+    std::vector<int> workoutForCustomer;
+    for (int i= 0;studio.getTrainer(trainerId)->getCustomers().size() ;i++)
+
+    {
+        workoutForCustomer=studio.getTrainer(trainerId)->getCustomers()[i]->order(studio.getWorkoutOptions());
+        Studio().getTrainer(trainerId)->order(studio.getTrainer(trainerId)->getCustomers()[i]->getId(),workoutForCustomer,studio.getWorkoutOptions());
+
+    }
+
+    /*std::cout <<"order"<<trainerId;
     for(int i=0;i<studio.getTrainer(trainerId)->getCustomers().size();i++)//run on all customers
     {
         for(int j=0;studio.getTrainer(trainerId)->getCustomers()[i]->order(studio.getWorkoutOptions()).size();j++) //run on customers order(workouts by int)-int vector
@@ -79,17 +87,22 @@ void Order::act(Studio &studio) {
 
 
     }
+     */
 }
 
 
 
 std::string Order::toString() const {
+    std::cout <<"order"<<trainerId;
+    for (int i = 0; i <3 ; ++i) {
+
+
+    }
     return std::string();
 }
 
 Order::Order(int id):trainerId(id) {
-
-}
+    }
 
 MoveCustomer::MoveCustomer(int src, int dst, int customerId) {
 
