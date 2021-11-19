@@ -1,9 +1,4 @@
 //
-// Created by liorlevy on 17/11/2021.
-//
-
-//#include "Customer.h"
-//
 // Created by ellabeeri on 10/11/2021.
 //
 #include "Customer.h"
@@ -31,10 +26,10 @@ std::vector<int> SweatyCustomer::order(const std::vector<Workout> &workout_optio
     std::vector<int> output;
     for(int i=0;i<workout_options.size();i++)
     {
-        if(workout_options[i].getType()==WorkoutType::CARDIO)
-        {
-            output.push_back(workout_options[i].getId());
-        }
+     if(workout_options[i].getType()==WorkoutType::CARDIO)
+     {
+         output.push_back(workout_options[i].getId());
+     }
     }
     return  output;
 
@@ -55,7 +50,7 @@ std::vector<int> CheapCustomer::order(const std::vector<Workout> &workout_option
     int min1 = std::min(cheapestWOIdByType(WorkoutType::ANAEROBIC, workout_options), cheapestWOIdByType(WorkoutType::CARDIO,workout_options));
     int min2= std::min(min1,cheapestWOIdByType(WorkoutType::MIXED,workout_options));
     if(min2<std::numeric_limits<int>::max());
-    output.push_back(min2);
+        output.push_back(min2);
     return output;
 
 
