@@ -1,11 +1,3 @@
-//
-// Created by liorlevy on 17/11/2021.
-//
-
-//#ifndef UNTITLED_TRAINER_H
-//#define UNTITLED_TRAINER_H
-
-//#endif //UNTITLED_TRAINER_H
 #ifndef TRAINER_H_
 #define TRAINER_H_
 
@@ -30,11 +22,14 @@ public:
     int getSalary();
     bool isOpen();
 private:
+    const int limitCapacity;
     int capacity;
     bool open;
+    int salary;
     std::vector<Customer*> customersList;
     std::vector<OrderPair> orderList; //A list of pairs for each order for the trainer - (customer_id, Workout)
     Workout workoutFromID(int id);
+
 };
 
 
